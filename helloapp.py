@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -6,9 +6,10 @@ app = Flask(__name__)
 def index():
     return '<h1>Hello There!</h1>'
 
-@app.route('/home')
-def home(place):
-    return '<h1>You are on the '+ place +' page!</h1>'
+@app.route('/home', methods=['GET', 'POST'])
+def home():
+    links = ['https://www.youtube.com', 'https://www.python.org']
+    return render_template('example.html', links=links)
 
 if __name__ == '__main__':
     app.run(debug=True)
